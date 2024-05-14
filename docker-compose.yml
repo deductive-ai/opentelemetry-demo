@@ -12,6 +12,7 @@ networks:
   default:
     name: opentelemetry-demo
     driver: bridge
+    external: true
 
 services:
   # ******************
