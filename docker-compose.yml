@@ -12,6 +12,7 @@ networks:
   default:
     name: opentelemetry-demo
     driver: bridge
+    external: true
 
 services:
   # ******************
@@ -680,6 +681,7 @@ services:
       - --web.route-prefix=/
       - --enable-feature=exemplar-storage
       - --enable-feature=otlp-write-receiver
+      - --web.enable-admin-api
     volumes:
       - ./src/prometheus/prometheus-config.yaml:/etc/prometheus/prometheus-config.yaml
     deploy:
