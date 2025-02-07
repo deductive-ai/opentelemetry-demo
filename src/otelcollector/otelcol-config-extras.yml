@@ -17,6 +17,12 @@
 #      traces:
 #        exporters: [spanmetrics, otlphttp/example]
 
+receivers:
+  otlp:
+    protocols:
+      grpc:
+      http:
+
 connectors:
   spanmetrics:
     dimensions:
@@ -29,7 +35,7 @@ connectors:
     metrics_flush_interval: 15s
 
 exporters:
-  newrelic:
+  otlphttp/newrelic:
     endpoint: "https://otlp.nr-data.net:443"
     headers:
       api-key: "${NEW_RELIC_API_KEY}"
@@ -37,6 +43,6 @@ exporters:
 service:
   pipelines:
     logs:
-      receivers: [newrelic]
+      receivers: [otlp]
       processors: [batch]
-      exporters: [newrelic]
+      exporters: [otlphttp/newrelic]
