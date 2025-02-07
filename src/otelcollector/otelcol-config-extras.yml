@@ -17,6 +17,12 @@
 #      traces:
 #        exporters: [spanmetrics, otlphttp/example]
 
+receivers:
+  otlp:
+    protocols:
+      grpc:
+      http:
+
 connectors:
   spanmetrics:
     dimensions:
@@ -37,6 +43,6 @@ exporters:
 service:
   pipelines:
     logs:
-      receivers: [newrelic]
+      receivers: [otlp]
       processors: [batch]
       exporters: [newrelic]
