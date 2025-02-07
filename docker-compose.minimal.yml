@@ -521,6 +521,7 @@ services:
     logging: *logging
     environment:
       - ENVOY_PORT
+      - NEW_RELIC_API_KEY=${NEW_RELIC_API_KEY}
 
   # Prometheus
   prometheus:
